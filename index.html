@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./images/favicon.png" />
+    <title>DangerGrid the game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/ea89842d86.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <link rel="stylesheet" href="style.css" />
+  <body>
+    <div class="game-container">
+      <header>
+        <span class="title">DangerGrid<i class="fa-solid fa-burst"></i></span
+        ><span class="score-panel"
+          >score: <span class="score">00000</span></span
+        >
+      </header>
+      <div class="info-text"></div>
+      <main class="game-board">
+        <div class="grid"></div>
+      </main>
+      <div class="end-game-screen hidden">
+        <div class="end-game-text">GAME OVER</div>
+        <button>Reload Game</button>
+      </div>
+    </div>
+    <footer>
+      <small
+        >coded by ▼ Nesli Parmaksizoglu<br />and open sourced on
+        <a
+          href="https://github.com/nesliprm/bcw-game-board"
+          target="_blank"
+          title="go to Github"
+          >GitHub</a
+        ></small
+      >.
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
