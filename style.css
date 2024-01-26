@@ -24,11 +24,6 @@ header {
   margin-bottom: 15px;
 }
 
-i {
-  font-size: 35px;
-  margin-left: 3px;
-}
-
 button {
   color: var(--color-text);
   font-family: var(--main-font);
@@ -62,19 +57,19 @@ a:hover {
 /* CLASSES */
 
 .title {
-  margin-top: -20px;
-  font-size: 50px;
+  margin-top: -25px;
+  font-size: 60px;
   font-family: var(--title-font);
   text-shadow: 1px 1px 2px rgb(0, 0, 0, 0.3);
 }
 
-.score-panel {
+.timer {
   font-size: 18px;
   margin-top: 25px;
 }
 
 .game-container {
-  width: 322px;
+  width: 380px;
   background-color: var(--color-base);
   padding: 30px;
   border: dashed 1px;
@@ -92,14 +87,10 @@ a:hover {
 }
 
 .cell {
-  border: solid 1px var(--color-text);
-  width: 30px;
-  height: 30px;
+  border: dotted 1px rgb(190, 190, 190);
+  width: 40px;
+  height: 40px;
   cursor: pointer;
-}
-
-.cell:hover {
-  border: solid 1px rgb(190, 190, 190);
 }
 
 .end-game-screen {
