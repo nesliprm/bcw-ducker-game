@@ -137,3 +137,31 @@ a:hover {
   font-size: 13px;
   margin-bottom: 20px;
 }
+
+.river {
+  border: solid 1px var(--color-water);
+  background-color: var(--color-water);
+}
+
+.road {
+  border-top: solid 1px rgb(190, 190, 190);
+  border-bottom: solid 1px rgb(190, 190, 190);
+  border-left: dotted 1px var(--color-road);
+  border-right: dotted 1px var(--color-road);
+  background-color: var(--color-road);
+}
+
+.car {
+  background-image: url("./images/car.png");
+  background-size: cover;
+}
+
+.bus {
+  background-image: url("./images/bus.png");
+  background-size: cover;
+}
+
+.wood {
+  background-image: url("./images/log.png");
+  background-size: cover;
+}
