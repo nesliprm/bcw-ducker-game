@@ -58,4 +58,49 @@ function drawGrid() {
   });
 }
 
-drawGrid();
+function placeDuck() {
+  contentBeforeDuck = gridMatrix[duckPlace.y][duckPlace.x];
+
+  //x or y which comes before?? it has to look for y position first!
+  gridMatrix[duckPlace.y][duckPlace.x] = "duck";
+}
+
+function moveDuck(event) {
+  const key = event.key;
+  gridMatrix[duckPlace.y][duckPlace.x] = contentBeforeDuck;
+
+  // looking for keyboard actions:
+  switch (key) {
+    case "ArrowUp":
+      if (duckPlace.y > 0) duckPlace.y--; //if statement to avoid duck from going off screen
+      break; // to put a stop in the function
+
+    case "ArrowDown":
+      if (duckPlace.y < 8) duckPlace.y++;
+      break;
+    case "ArrowLeft":
+      if (duckPlace.x > 0) duckPlace.x--;
+      break;
+    case "ArrowRight":
+      if (duckPlace.x < 8) duckPlace.x++;
+      break;
+  }
+
+  render();
+}
+
+function render() {
+  placeDuck();
+  drawGrid();
+}
+
+const renderLoop = setInterval(moveDuckWithoutDoubling, 600);
+
+function moveDuckWithoutDoubling() {
+  gridMatrix[duckPlace.y][duckPlace.x] = contentBeforeDuck;
+  render();
+}
+
+// when you press the key and lift your finger 'keyup',
+//when that happens move the duck
+document.addEventListener("keyup", moveDuck);

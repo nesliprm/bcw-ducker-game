@@ -165,3 +165,8 @@ a:hover {
   background-image: url("./images/log.png");
   background-size: cover;
 }
+
+.duck {
+  background-image: url("./images/duck.png");
+  background-size: cover;
+}
