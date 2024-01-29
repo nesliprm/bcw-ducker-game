@@ -68,6 +68,11 @@ a:hover {
   margin-top: 25px;
 }
 
+.timer-text {
+  font-size: 18px;
+  margin-top: 25px;
+}
+
 .game-container {
   width: 380px;
   background-color: var(--color-base);
@@ -105,37 +110,23 @@ a:hover {
   text-align: center;
   justify-content: center;
   align-items: center;
-  background-color: var(--color4-trans);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .end-game-text {
   font-size: 40px;
   font-weight: bolder;
   margin-bottom: 6px;
+  color: var(--color-base);
 }
 
 .hidden {
   display: none;
 }
 
-.clicked {
-  background-color: var(--color-accent);
-  cursor: not-allowed;
-}
-
 .victory {
-  background-color: var(--color2-trans);
-}
-
-.boom {
-  background-color: var(--color-base);
-  background-image: url(./images/bomb.png);
-  background-size: contain;
-}
-
-.info-text {
-  font-size: 13px;
-  margin-bottom: 20px;
+  color: var(--color-text);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .river {
@@ -168,5 +159,15 @@ a:hover {
 
 .duck {
   background-image: url("./images/duck.png");
+  background-size: cover;
+}
+
+.duck-arrived {
+  background-image: url("./images/duck-arrived.png");
+  background-size: cover;
+}
+
+.duck-dead {
+  background-image: url("./images/duck-dead.png");
   background-size: cover;
 }

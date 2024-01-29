@@ -33,7 +33,7 @@ const riverRows = [1, 2];
 const roadRows = [4, 5, 6];
 const duckPlace = { x: 4, y: 8 };
 let contentBeforeDuck = "";
-let time = 15;
+let time = 20;
 
 // LOOPING THROUGH GRID & CELLS
 
@@ -127,8 +127,22 @@ function animateRows() {
   moveRight(6);
 }
 
-function checkPosition() {
+function updateDuckPlace() {
+  gridMatrix[duckPlace.y][duckPlace.x] = contentBeforeDuck;
+  if (contentBeforeDuck === "wood") {
+    if (duckPlace.y === 1 && duckPlace.x < 8) duckPlace.x++;
+    else if (duckPlace.y === 2 && duckPlace.x > 0) duckPlace.x--;
+  }
+}
+
+function checkPlace() {
   if (duckPlace.y === victoryRow) endGame("duck-arrived");
+  else if (
+    contentBeforeDuck === "car" ||
+    contentBeforeDuck === "bus" ||
+    contentBeforeDuck === "river"
+  )
+    endGame("duck-dead");
 }
 
 //// GAME win/lose:
@@ -137,8 +151,11 @@ function endGame(situation) {
   // victory:
   if (situation === "duck-arrived") {
     endText.innerHTML = "YOU WON!";
+    endText.classList.add("victory");
     endScreen.classList.add("victory");
   }
+
+  gridMatrix[duckPlace.y][duckPlace.x] = situation;
 
   // stop the render loop:
   clearInterval(renderLoop);
@@ -157,21 +174,20 @@ function countdown() {
     time--;
     timer.innerText = time.toString().padStart(5, "0");
   }
-}
 
-if (time === 0) {
-  // end game:
-  endGame();
+  if (time === 0) {
+    // end game:
+    endGame();
+  }
 }
-
 function render() {
   placeDuck();
-  checkPosition();
+  checkPlace();
   drawGrid();
 }
 
 function moveDuckWithoutDoubling() {
-  gridMatrix[duckPlace.y][duckPlace.x] = contentBeforeDuck;
+  updateDuckPlace();
   animateRows();
   render();
 }
