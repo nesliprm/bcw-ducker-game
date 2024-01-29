@@ -97,18 +97,94 @@ function moveDuck(event) {
   render();
 }
 
+// animation functions
+
+function moveRight(gridRowIndex) {
+  // access all the cells:
+  const currentRow = gridMatrix[gridRowIndex];
+
+  // remove the last element:
+  const lastElement = currentRow.pop();
+
+  // put it back in the beginning (index 0):
+  currentRow.unshift(lastElement);
+}
+
+function moveLeft(gridRowIndex) {
+  const currentRow = gridMatrix[gridRowIndex];
+  const firstElement = currentRow.shift();
+  currentRow.push(firstElement);
+}
+
+function animateRows() {
+  // river:
+  moveRight(1);
+  moveLeft(2);
+
+  //road:
+  moveRight(4);
+  moveRight(5);
+  moveRight(6);
+}
+
+function checkPosition() {
+  if (duckPlace.y === victoryRow) endGame("duck-arrived");
+}
+
+//// GAME win/lose:
+
+function endGame(situation) {
+  // victory:
+  if (situation === "duck-arrived") {
+    endText.innerHTML = "YOU WON!";
+    endScreen.classList.add("victory");
+  }
+
+  // stop the render loop:
+  clearInterval(renderLoop);
+  // stop the countdown loop:
+  clearInterval(countdownLoop);
+
+  // stop the player action:
+  document.removeEventListener("keyup", moveDuck);
+
+  // display endgame screen:
+  endScreen.classList.remove("hidden");
+}
+
+function countdown() {
+  if (time !== 0) {
+    time--;
+    timer.innerText = time.toString().padStart(5, "0");
+  }
+}
+
+if (time === 0) {
+  // end game:
+  endGame();
+}
+
 function render() {
   placeDuck();
+  checkPosition();
   drawGrid();
 }
 
-const renderLoop = setInterval(moveDuckWithoutDoubling, 600);
-
 function moveDuckWithoutDoubling() {
   gridMatrix[duckPlace.y][duckPlace.x] = contentBeforeDuck;
+  animateRows();
   render();
 }
+
+const renderLoop = setInterval(moveDuckWithoutDoubling, 600);
+const countdownLoop = setInterval(countdown, 1000);
 
 // when you press the key and lift your finger 'keyup',
 //when that happens move the duck
 document.addEventListener("keyup", moveDuck);
+
+function reload() {
+  location.reload();
+}
+
+reloadButton.addEventListener("click", reload);
