@@ -71,17 +71,25 @@ function moveDuck(event) {
 
   // looking for keyboard actions:
   switch (key) {
-    case ("ArrowUp", "w"):
+    case "ArrowUp":
+    case "w":
+    case "W":
       if (duckPlace.y > 0) duckPlace.y--; //if statement to avoid duck from going off screen
       break; // to put a stop in the function
 
-    case ("ArrowDown", "s"):
+    case "ArrowDown":
+    case "s":
+    case "S":
       if (duckPlace.y < 8) duckPlace.y++;
       break;
-    case ("ArrowLeft", "a"):
+    case "ArrowLeft":
+    case "a":
+    case "A":
       if (duckPlace.x > 0) duckPlace.x--;
       break;
-    case ("ArrowRight", "d"):
+    case "ArrowRight":
+    case "d":
+    case "D":
       if (duckPlace.x < 8) duckPlace.x++;
       break;
   }
