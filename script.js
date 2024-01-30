@@ -1,10 +1,12 @@
+// MAIN CONSTANTS:
+
 const grid = document.querySelector(".grid");
 const timer = document.querySelector(".timer");
 const endScreen = document.querySelector(".end-game-screen");
 const endText = document.querySelector(".end-game-text");
 const reloadButton = document.querySelector("button");
 
-// NESTED ARRAY
+// CONSTANT: NESTED ARRAY
 
 const gridMatrix = [
   ["", "", "", "", "", "", "", "", ""],
@@ -28,6 +30,8 @@ const gridMatrix = [
   ["", "", "", "", "", "", "", "", ""],
 ];
 
+// ANIMATION CONSTANTS:
+
 const victoryRow = 0;
 const riverRows = [1, 2];
 const roadRows = [4, 5, 6];
@@ -35,7 +39,7 @@ const duckPlace = { x: 4, y: 8 };
 let contentBeforeDuck = "";
 let time = 20;
 
-// LOOPING THROUGH GRID & CELLS
+// LOOPING THROUGH GRID & CELLS:
 
 function drawGrid() {
   grid.innerHTML = "";
@@ -58,12 +62,14 @@ function drawGrid() {
   });
 }
 
+// POSITIONING THE DUCK:
+
 function placeDuck() {
   contentBeforeDuck = gridMatrix[duckPlace.y][duckPlace.x];
-
-  //x or y which comes before?? it has to look for y position first!
   gridMatrix[duckPlace.y][duckPlace.x] = "duck";
 }
+
+// MOVING THE DUCK:
 
 function moveDuck(event) {
   const key = event.key;
@@ -74,7 +80,7 @@ function moveDuck(event) {
     case "ArrowUp":
     case "w":
     case "W":
-      if (duckPlace.y > 0) duckPlace.y--; //if statement to avoid duck from going off screen
+      if (duckPlace.y > 0) duckPlace.y--; // if statement to avoid duck from going off screen
       break; // to put a stop in the function
 
     case "ArrowDown":
@@ -97,7 +103,7 @@ function moveDuck(event) {
   render();
 }
 
-// animation functions
+// ANIMATION FUNCTIONS:
 
 function moveRight(gridRowIndex) {
   // access all the cells:
@@ -148,7 +154,7 @@ function checkPlace() {
 //// GAME win/lose:
 
 function endGame(situation) {
-  // victory:
+  // victory situation:
   if (situation === "duck-arrived") {
     endText.innerHTML = "YOU WON!";
     endText.classList.add("victory");
@@ -159,6 +165,7 @@ function endGame(situation) {
 
   // stop the render loop:
   clearInterval(renderLoop);
+
   // stop the countdown loop:
   clearInterval(countdownLoop);
 
@@ -168,6 +175,8 @@ function endGame(situation) {
   // display endgame screen:
   endScreen.classList.remove("hidden");
 }
+
+// TIME COUNTER:
 
 function countdown() {
   if (time !== 0) {
@@ -180,11 +189,14 @@ function countdown() {
     endGame();
   }
 }
+
 function render() {
   placeDuck();
   checkPlace();
   drawGrid();
 }
+
+// MOVE DUCk without creating copies on each cell:
 
 function moveDuckWithoutDoubling() {
   updateDuckPlace();
@@ -192,12 +204,17 @@ function moveDuckWithoutDoubling() {
   render();
 }
 
+// animation moving every 600 ms:
 const renderLoop = setInterval(moveDuckWithoutDoubling, 600);
+
+// timer looping every second:
 const countdownLoop = setInterval(countdown, 1000);
 
 // when you press the key and lift your finger 'keyup',
 //when that happens move the duck
 document.addEventListener("keyup", moveDuck);
+
+// END SCREEN BUTTON ACTION:
 
 function reload() {
   location.reload();
